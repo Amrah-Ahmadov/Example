@@ -1,5 +1,4 @@
 package com.example.callcenterforloanproject.dto;
-
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,7 +6,7 @@ import lombok.*;
 @Setter
 @Getter
 @Builder(toBuilder = true)
-public class ReclamDto {
-    private Long id;
-    private String name;
+public class UserLoginResponseDto {
+    private String username;
+    String jwt;
 }

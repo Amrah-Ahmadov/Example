@@ -17,6 +17,10 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CREDIT_ID_GENERATOR")
     private Long id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Credit")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "credit")
     private List<Loan> loans;
+
+    public Credit(Long id) {
+        this.id = id;
+    }
 }

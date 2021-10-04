@@ -1,5 +1,6 @@
 package com.example.callcenterforloanproject.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Loan {
     @Id
-    @SequenceGenerator(name = "USER_ID_GENERATOR", allocationSize = 1, sequenceName = "USER_ID_GENERATOR")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_GENERATOR")
+    @SequenceGenerator(name = "LOAN_ID_GENERATOR", allocationSize = 1, sequenceName = "LOAN_ID_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOAN_ID_GENERATOR")
     private Long id;
     private String name;
     private String surname;
@@ -23,13 +24,15 @@ public class Loan {
     private BigDecimal amount;
     private String note;
     @ManyToOne
-    @JoinColumn(name = "creditId")
+    @JoinColumn(name = "creditId", referencedColumnName = "id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Credit credit;
     @ManyToOne
-    @JoinColumn(name = "reclamId")
-    private Reclam reclam;
+    @JoinColumn(name = "reclamId", referencedColumnName = "id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Reclame reclame;
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId",referencedColumnName = "id")
     private User user;
     private LocalDateTime creationTime;
 

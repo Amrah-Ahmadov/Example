@@ -24,6 +24,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "User")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Loan> loans;
 }

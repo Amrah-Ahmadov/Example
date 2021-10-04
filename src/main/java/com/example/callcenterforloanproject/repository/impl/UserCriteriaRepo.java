@@ -3,6 +3,7 @@ package com.example.callcenterforloanproject.repository.impl;
 import com.example.callcenterforloanproject.model.User;
 import com.example.callcenterforloanproject.repository.IUserCriteriaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
+@Primary
 public class UserCriteriaRepo implements IUserCriteriaRepo {
 
     @PersistenceContext
@@ -66,7 +68,7 @@ public class UserCriteriaRepo implements IUserCriteriaRepo {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         Root<User> root = cq.from(User.class);
-        Predicate userNamePredicate = cb.equal(root.get("userName"), userName);
+        Predicate userNamePredicate = cb.equal(root.get("username"), userName);
         cq.where(userNamePredicate);
         TypedQuery<User> query = entityManager.createQuery(cq);
         return query.getSingleResult();
