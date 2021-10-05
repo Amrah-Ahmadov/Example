@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Loan {
     @Id
     @SequenceGenerator(name = "LOAN_ID_GENERATOR", allocationSize = 1, sequenceName = "LOAN_ID_GENERATOR")

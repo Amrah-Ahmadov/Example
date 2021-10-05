@@ -50,6 +50,7 @@ public class ConverterService {
         LoanDto loanDto = modelMapper.map(loan, LoanDto.class);
         loanDto.setCreditDto(convertCreditToCreditDto(loan.getCredit()));
         loanDto.setReclameDto(convertReclameToReclameDto(loan.getReclame()));
+        loanDto.setUserDto(convertUserToUserDto(loan.getUser()));
         return loanDto;
     }
 }

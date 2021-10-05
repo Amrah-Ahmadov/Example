@@ -2,7 +2,7 @@ package com.example.callcenterforloanproject.service;
 
 import com.example.callcenterforloanproject.exception.CreditNotFoundException;
 import com.example.callcenterforloanproject.model.Credit;
-import com.example.callcenterforloanproject.repository.CreditRepo;
+import com.example.callcenterforloanproject.repository.ICreditCriteriaRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,34 +10,34 @@ import java.util.Optional;
 @Service
 public class CreditService {
 
-    private final CreditRepo creditRepo;
+    private final ICreditCriteriaRepo creditCriteriaRepo;
 
-    public CreditService(CreditRepo creditRepo) {
-        this.creditRepo = creditRepo;
+    public CreditService(ICreditCriteriaRepo creditCriteriaRepo) {
+        this.creditCriteriaRepo = creditCriteriaRepo;
     }
 
     public Credit addNewCredit(Credit credit){
-        return creditRepo.saveAndFlush(credit);
+        return creditCriteriaRepo.saveCredit(credit);
     }
     public Credit removeCredit(Credit credit){
         if(credit != null){
-            creditRepo.delete(credit);
+            creditCriteriaRepo.deleteCredit(credit);
             return credit;
         }else{
             throw new CreditNotFoundException();
         }
     }
     public Credit removeCreditById(Long id){
-        Optional<Credit> credit = creditRepo.findById(id);
+        Optional<Credit> credit = Optional.ofNullable(creditCriteriaRepo.getCreditById(id));
         if(credit.isPresent()){
-            creditRepo.delete(credit.get());
+            creditCriteriaRepo.deleteCredit(credit.get());
             return credit.get();
         }else{
             throw new CreditNotFoundException();
         }
     }
     public Credit getCreditById(Long id){
-        Optional<Credit> credit = creditRepo.findById(id);
+        Optional<Credit> credit = Optional.ofNullable(creditCriteriaRepo.getCreditById(id));
         if(credit.isPresent()){
             return credit.get();
         }else{

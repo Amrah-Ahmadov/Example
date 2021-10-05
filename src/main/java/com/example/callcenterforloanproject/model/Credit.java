@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Credit {
     @Id
     @SequenceGenerator(name = "CREDIT_ID_GENERATOR", allocationSize = 1, sequenceName = "CREDIT_ID_GENERATOR")

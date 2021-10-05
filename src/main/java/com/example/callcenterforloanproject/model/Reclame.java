@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Reclame {
     @Id
     @SequenceGenerator(name = "RECLAM_ID_GENERATOR", allocationSize = 1, sequenceName = "RECLAM_ID_GENERATOR")

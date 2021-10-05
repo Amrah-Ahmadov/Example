@@ -1,5 +1,6 @@
 package com.example.callcenterforloanproject.repository.impl;
 
+import com.example.callcenterforloanproject.exception.UserNotFoundException;
 import com.example.callcenterforloanproject.model.User;
 import com.example.callcenterforloanproject.repository.IUserCriteriaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -25,53 +27,73 @@ public class UserCriteriaRepo implements IUserCriteriaRepo {
 
     @Override
     public User getUserById(Long id){
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
-        Root<User> root = cq.from(User.class);
-        Predicate userIdPredicate = criteriaBuilder.equal(root.get("id"), id);
-        cq.where(userIdPredicate);
-        TypedQuery<User> query = entityManager.createQuery(cq);
-        return query.getSingleResult();
+        try{
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            Predicate userIdPredicate = criteriaBuilder.equal(root.get("id"), id);
+            cq.where(userIdPredicate);
+            TypedQuery<User> query = entityManager.createQuery(cq);
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            throw new UserNotFoundException();
+        }
     }
     @Override
     public User getUserByInnerNumber(Long innerNumber){
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        Root<User> root = cq.from(User.class);
-        Predicate userNumberPredicate = cb.equal(root.get("innerNumber"), innerNumber);
-        cq.where(userNumberPredicate);
-        TypedQuery<User> query = entityManager.createQuery(cq);
-        return query.getSingleResult();
+        try{
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> cq = cb.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            Predicate userNumberPredicate = cb.equal(root.get("innerNumber"), innerNumber);
+            cq.where(userNumberPredicate);
+            TypedQuery<User> query = entityManager.createQuery(cq);
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            throw new UserNotFoundException();
+        }
     }
     @Override
     public List<User> getUserByName(String name){
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
-        Root<User> root = cq.from(User.class);
-        Predicate userNamePredicate = criteriaBuilder.equal(root.get("name"), name);
-        cq.where(userNamePredicate);
-        TypedQuery<User> query = entityManager.createQuery(cq);
-        return query.getResultList();
+        try{
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            Predicate userNamePredicate = criteriaBuilder.equal(root.get("name"), name);
+            cq.where(userNamePredicate);
+            TypedQuery<User> query = entityManager.createQuery(cq);
+            return query.getResultList();
+        }catch (NoResultException e){
+            throw new UserNotFoundException();
+        }
     }
     @Override
     public List<User> getUserBySurname(String surname){
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
-        Root<User> root = cq.from(User.class);
-        Predicate userSurnamePredicate = criteriaBuilder.equal(root.get("surname"), surname);
-        cq.where(userSurnamePredicate);
-        TypedQuery<User> query = entityManager.createQuery(cq);
-        return query.getResultList();
+        try{
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> cq = criteriaBuilder.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            Predicate userSurnamePredicate = criteriaBuilder.equal(root.get("surname"), surname);
+            cq.where(userSurnamePredicate);
+            TypedQuery<User> query = entityManager.createQuery(cq);
+            return query.getResultList();
+        }catch (NoResultException e){
+            throw new UserNotFoundException();
+        }
     }
     @Override
     public User getUserByUserName(String userName){
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        Root<User> root = cq.from(User.class);
-        Predicate userNamePredicate = cb.equal(root.get("username"), userName);
-        cq.where(userNamePredicate);
-        TypedQuery<User> query = entityManager.createQuery(cq);
-        return query.getSingleResult();
+        try{
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> cq = cb.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            Predicate userNamePredicate = cb.equal(root.get("username"), userName);
+            cq.where(userNamePredicate);
+            TypedQuery<User> query = entityManager.createQuery(cq);
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            throw new UserNotFoundException();
+        }
     }
     @Override
     @Transactional

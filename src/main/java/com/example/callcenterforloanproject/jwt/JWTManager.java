@@ -12,7 +12,7 @@ import java.util.Date;
 @Service
 public class JWTManager {
     private Date issuedAt;
-    private int expiration = 5*60*1000;
+    private int expiration = 120*60*1000;
     @Value("${jwt.secret}")
     private String secret;
 
