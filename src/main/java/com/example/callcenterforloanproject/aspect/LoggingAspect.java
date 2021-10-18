@@ -32,8 +32,19 @@ public class LoggingAspect {
     @AfterReturning(pointcut = "execution(* com.example.callcenterforloanproject.service.LoanService.addNewLoan(..))",
             returning = "loan")
     public void logAddNewLoanOfLoanService(JoinPoint jp, Loan loan){
-        System.out.println("Hello");
-        LOGGER.warn("New loan added with id = {}, consumer name : {}, consumer surname : {}, address : {}, amount : {}, note : {}, credit name : {}, reclam type : {}",
+        LOGGER.info("New loan added with id = {}, consumer name : {}, consumer surname : {}, address : {}, amount : {}, note : {}, credit name : {}, reclam type : {}",
+                loan.getId(), loan.getName(), loan.getSurname(), loan.getAddress(), loan.getAmount(), loan.getNote(), loan.getCredit().getName(), loan.getReclame().getName());
+    }
+    @AfterReturning(pointcut = "execution(* com.example.callcenterforloanproject.service.LoanService.deleteLoanById(..))",
+            returning = "loan")
+    public void logDeleteLoanByIdOfLoanService(JoinPoint jp, Loan loan){
+        LOGGER.warn("Current loan removed with id = {}, consumer name : {}, consumer surname : {}, address : {}, amount : {}, note : {}, credit name : {}, reclam type : {}",
+                loan.getId(), loan.getName(), loan.getSurname(), loan.getAddress(), loan.getAmount(), loan.getNote(), loan.getCredit().getName(), loan.getReclame().getName());
+    }
+    @AfterReturning(pointcut = "execution(* com.example.callcenterforloanproject.service.LoanService.updateLoan(..))",
+            returning = "loan")
+    public void logUpdateLoanByIdOfLoanService(JoinPoint jp, Loan loan){
+        LOGGER.warn("Current loan updated with id = {}, consumer name : {}, consumer surname : {}, address : {}, amount : {}, note : {}, credit name : {}, reclam type : {}",
                 loan.getId(), loan.getName(), loan.getSurname(), loan.getAddress(), loan.getAmount(), loan.getNote(), loan.getCredit().getName(), loan.getReclame().getName());
     }
 }

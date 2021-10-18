@@ -2,9 +2,11 @@ package com.example.callcenterforloanproject.service;
 
 import com.example.callcenterforloanproject.exception.CreditNotFoundException;
 import com.example.callcenterforloanproject.model.Credit;
+import com.example.callcenterforloanproject.model.Loan;
 import com.example.callcenterforloanproject.repository.ICreditCriteriaRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +45,9 @@ public class CreditService {
         }else{
             throw new CreditNotFoundException();
         }
+    }
+    public List<Credit> getAllCredits(){
+        return creditCriteriaRepo.getAllCredits();
     }
 
 }

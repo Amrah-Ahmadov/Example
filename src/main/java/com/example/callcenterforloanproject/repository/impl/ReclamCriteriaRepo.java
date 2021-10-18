@@ -1,5 +1,6 @@
 package com.example.callcenterforloanproject.repository.impl;
 
+import com.example.callcenterforloanproject.exception.CreditNotFoundException;
 import com.example.callcenterforloanproject.exception.ReclameNotFoundException;
 import com.example.callcenterforloanproject.model.Credit;
 import com.example.callcenterforloanproject.model.Reclame;
@@ -16,6 +17,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 @Primary
@@ -71,6 +73,18 @@ public class ReclamCriteriaRepo implements IReclamCriteriaRepo {
             return query.getSingleResult();
         }catch (NoResultException e){
             throw new RuntimeException();
+        }
+    }
+    @Override
+    public List<Reclame> getAllReclames(){
+        try{
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Reclame> cq = criteriaBuilder.createQuery(Reclame.class);
+            Root<Reclame> root = cq.from(Reclame.class);
+            TypedQuery<Reclame> query = entityManager.createQuery(cq);
+            return query.getResultList();
+        }catch (NoResultException e){
+            throw new ReclameNotFoundException();
         }
     }
 }

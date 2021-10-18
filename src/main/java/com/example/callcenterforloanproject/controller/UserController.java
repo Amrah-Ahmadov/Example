@@ -60,17 +60,15 @@ public class UserController {
     public ResponseEntity<String> getWelcomeMessage(){
         return new ResponseEntity<>("Hello and welcome", HttpStatus.OK);
     }
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            System.out.println("222222");
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            System.out.println("111111");
-        } catch (DisabledException e) {
-            System.out.println("Test 1");
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            System.out.println("test2");
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
-    }
+
+//    private void authenticate(String username, String password) throws Exception {
+//        try {
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//        } catch (DisabledException e) {
+//            throw new Exception("USER_DISABLED", e);
+//        } catch (BadCredentialsException e) {
+//            System.out.println("test2");
+//            throw new Exception("INVALID_CREDENTIALS", e);
+//        }
+//    }
 }

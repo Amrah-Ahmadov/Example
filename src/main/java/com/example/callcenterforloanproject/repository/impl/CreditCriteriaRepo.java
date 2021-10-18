@@ -1,7 +1,9 @@
 package com.example.callcenterforloanproject.repository.impl;
 
 import com.example.callcenterforloanproject.exception.CreditNotFoundException;
+import com.example.callcenterforloanproject.exception.LoanNotFoundException;
 import com.example.callcenterforloanproject.model.Credit;
+import com.example.callcenterforloanproject.model.Loan;
 import com.example.callcenterforloanproject.model.User;
 import com.example.callcenterforloanproject.repository.ICreditCriteriaRepo;
 import org.springframework.context.annotation.Primary;
@@ -70,6 +72,18 @@ public class CreditCriteriaRepo implements ICreditCriteriaRepo {
             cq.where(creditNamePredicate);
             TypedQuery<Credit> query = entityManager.createQuery(cq);
             return query.getSingleResult();
+        }catch (NoResultException e){
+            throw new CreditNotFoundException();
+        }
+    }
+    @Override
+    public List<Credit> getAllCredits(){
+        try{
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Credit> cq = criteriaBuilder.createQuery(Credit.class);
+            Root<Credit> root = cq.from(Credit.class);
+            TypedQuery<Credit> query = entityManager.createQuery(cq);
+            return query.getResultList();
         }catch (NoResultException e){
             throw new CreditNotFoundException();
         }

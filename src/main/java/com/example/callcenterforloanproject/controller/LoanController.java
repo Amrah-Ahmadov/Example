@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,17 +36,12 @@ public class LoanController {
         this.reclamService = reclamService;
     }
     @PostMapping
-    public ResponseEntity<LoanDto> addNewLoan(HttpServletRequest request, @RequestBody Loan loan){
+    public ResponseEntity<LoanDto> addNewLoan(HttpServletRequest request,@Valid @RequestBody Loan loan){
         String userName = jwtManager.getUserNameFromToken(request.getHeader("Authorization").replace("Bearer ", ""));
         User user = userService.getUSerByUsername(userName);
-//        Loan loan1 = loanService.addNewLoan(loan);
         Credit credit = creditService.getCreditById(loan.getCredit().getId());
-//        loan1.setCredit(credit);
         loan.setCredit(credit); //// sonra elave olunan
         Reclame reclame = reclamService.getReclameByID(loan.getReclame().getId());
-//        loan1.setReclame(reclame);
-//        loan1.setUser(user);
-//        loan1.setCreationTime(LocalDateTime.now());
         loan.setReclame(reclame);
         loan.setUser(user);
         loan.setCreationTime(LocalDateTime.now());
@@ -63,13 +59,13 @@ public class LoanController {
         return new ResponseEntity<>(converterService.convertLoanToLoanDto(loan), HttpStatus.OK);
     }
     @GetMapping
-    public ResponseEntity<List<LoanDto>> getLoansByUser(){
+    public ResponseEntity<List<LoanDto>> getAllLoans(){
         List<Loan> allLoans = loanService.getAllLoans();
         return new ResponseEntity<>(allLoans.stream().map(l -> converterService.convertLoanToLoanDto(l)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @PutMapping("/{loanId}")
-    public ResponseEntity<LoanDto> updateLoan(@PathVariable Long loanId, @RequestBody Loan loan){
+    public ResponseEntity<LoanDto> updateLoan(@PathVariable Long loanId, @Valid @RequestBody Loan loan){
         Loan loan1 = loanService.getLoanById(loanId);
         loan.setId(loanId); /////// deyise biler
         Credit credit = creditService.getCreditById(loan.getCredit().getId());
@@ -79,7 +75,6 @@ public class LoanController {
         loan.setUser(loan1.getUser());
         loan.setCreationTime(loan1.getCreationTime());
         Loan loan2 = loanService.updateLoan(loan);
-        System.out.println(loan.getClass().getFields() + " XXXXXXXXX");
         return new ResponseEntity<>(converterService.convertLoanToLoanDto(loan2), HttpStatus.OK);
     }
 }

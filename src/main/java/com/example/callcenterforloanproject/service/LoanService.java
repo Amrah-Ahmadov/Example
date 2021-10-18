@@ -18,8 +18,7 @@ public class LoanService {
 
     public Loan addNewLoan(Loan loan){
         Loan loan1 = loanCriteriaRepo.saveLoan(loan);
-        System.out.println(loan1.getCredit().getName() + " ZZZZZZZZZZZZZZZZZXXXXXXXXXXXXXx");
-        return loan1;      //////////////////////// sonra deyis !!!!!!!!!!!!
+        return loan1;      //sonra deyis!!
     }
     public Loan deleteLoanById(Long id){
         Optional<Loan> loan = Optional.ofNullable(loanCriteriaRepo.getLoanById(id));
