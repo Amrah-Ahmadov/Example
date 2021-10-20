@@ -1,8 +1,8 @@
 package com.example.callcenterforloanproject.service;
 
 import com.example.callcenterforloanproject.dto.UserRegisterDto;
-import com.example.callcenterforloanproject.model.User;
-import com.example.callcenterforloanproject.repository.IUserCriteriaRepo;
+import com.example.callcenterforloanproject.model.entity.User;
+import com.example.callcenterforloanproject.model.repository.IUserCriteriaRepo;
 import org.springframework.stereotype.Service;
 
 @Service

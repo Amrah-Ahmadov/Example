@@ -1,8 +1,8 @@
 package com.example.callcenterforloanproject.service;
 
 import com.example.callcenterforloanproject.exception.LoanNotFoundException;
-import com.example.callcenterforloanproject.model.Loan;
-import com.example.callcenterforloanproject.repository.ILoanCriteriaRepo;
+import com.example.callcenterforloanproject.model.entity.Loan;
+import com.example.callcenterforloanproject.model.repository.ILoanCriteriaRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

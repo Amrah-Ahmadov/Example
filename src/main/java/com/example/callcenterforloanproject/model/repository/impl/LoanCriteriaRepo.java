@@ -1,10 +1,8 @@
-package com.example.callcenterforloanproject.repository.impl;
+package com.example.callcenterforloanproject.model.repository.impl;
 
 import com.example.callcenterforloanproject.exception.LoanNotFoundException;
-import com.example.callcenterforloanproject.model.Credit;
-import com.example.callcenterforloanproject.model.Loan;
-import com.example.callcenterforloanproject.model.User;
-import com.example.callcenterforloanproject.repository.ILoanCriteriaRepo;
+import com.example.callcenterforloanproject.model.entity.Loan;
+import com.example.callcenterforloanproject.model.repository.ILoanCriteriaRepo;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

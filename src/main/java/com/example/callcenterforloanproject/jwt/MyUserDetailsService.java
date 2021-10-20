@@ -1,7 +1,7 @@
 package com.example.callcenterforloanproject.jwt;
 
-import com.example.callcenterforloanproject.model.User;
-import com.example.callcenterforloanproject.repository.IUserCriteriaRepo;
+import com.example.callcenterforloanproject.model.entity.User;
+import com.example.callcenterforloanproject.model.repository.IUserCriteriaRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

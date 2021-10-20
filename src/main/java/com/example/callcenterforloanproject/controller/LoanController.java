@@ -2,11 +2,12 @@ package com.example.callcenterforloanproject.controller;
 
 import com.example.callcenterforloanproject.dto.LoanDto;
 import com.example.callcenterforloanproject.jwt.JWTManager;
-import com.example.callcenterforloanproject.model.Credit;
-import com.example.callcenterforloanproject.model.Loan;
-import com.example.callcenterforloanproject.model.Reclame;
-import com.example.callcenterforloanproject.model.User;
+import com.example.callcenterforloanproject.model.entity.Credit;
+import com.example.callcenterforloanproject.model.entity.Loan;
+import com.example.callcenterforloanproject.model.entity.Reclame;
+import com.example.callcenterforloanproject.model.entity.User;
 import com.example.callcenterforloanproject.service.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/loan")
+@RequiredArgsConstructor
 public class LoanController {
+
     private final LoanService loanService;
     private final UserService userService;
     private final ConverterService converterService;
@@ -27,14 +30,14 @@ public class LoanController {
     private final CreditService creditService;
     private final ReclamService reclamService;
 
-    public LoanController(LoanService loanService, UserService userService, ConverterService converterService, JWTManager jwtManager, CreditService creditService, ReclamService reclamService) {
-        this.loanService = loanService;
-        this.userService = userService;
-        this.converterService = converterService;
-        this.jwtManager = jwtManager;
-        this.creditService = creditService;
-        this.reclamService = reclamService;
-    }
+//    public LoanController(LoanService loanService, UserService userService, ConverterService converterService, JWTManager jwtManager, CreditService creditService, ReclamService reclamService) {
+//        this.loanService = loanService;
+//        this.userService = userService;
+//        this.converterService = converterService;
+//        this.jwtManager = jwtManager;
+//        this.creditService = creditService;
+//        this.reclamService = reclamService;
+//    }
     @PostMapping
     public ResponseEntity<LoanDto> addNewLoan(HttpServletRequest request,@Valid @RequestBody Loan loan){
         String userName = jwtManager.getUserNameFromToken(request.getHeader("Authorization").replace("Bearer ", ""));

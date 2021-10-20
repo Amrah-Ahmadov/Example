@@ -1,9 +1,8 @@
-package com.example.callcenterforloanproject.repository.impl;
+package com.example.callcenterforloanproject.model.repository.impl;
 
 import com.example.callcenterforloanproject.exception.UserNotFoundException;
-import com.example.callcenterforloanproject.model.User;
-import com.example.callcenterforloanproject.repository.IUserCriteriaRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.callcenterforloanproject.model.entity.User;
+import com.example.callcenterforloanproject.model.repository.IUserCriteriaRepo;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

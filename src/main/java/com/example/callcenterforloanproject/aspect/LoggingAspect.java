@@ -1,7 +1,6 @@
 package com.example.callcenterforloanproject.aspect;
 
-import com.example.callcenterforloanproject.dto.LoanDto;
-import com.example.callcenterforloanproject.model.Loan;
+import com.example.callcenterforloanproject.model.entity.Loan;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;

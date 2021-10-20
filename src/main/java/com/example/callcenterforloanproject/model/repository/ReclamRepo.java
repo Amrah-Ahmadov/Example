@@ -1,6 +1,6 @@
-package com.example.callcenterforloanproject.repository;
+package com.example.callcenterforloanproject.model.repository;
 
-import com.example.callcenterforloanproject.model.Reclame;
+import com.example.callcenterforloanproject.model.entity.Reclame;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -5,18 +5,16 @@ import com.example.callcenterforloanproject.dto.UserLoginDto;
 import com.example.callcenterforloanproject.dto.UserLoginResponseDto;
 import com.example.callcenterforloanproject.dto.UserRegisterDto;
 import com.example.callcenterforloanproject.exception.RepeatPasswordIncorrectException;
+import com.example.callcenterforloanproject.exception.UsernameOrPasswordIncorrectException;
 import com.example.callcenterforloanproject.jwt.JWTManager;
 import com.example.callcenterforloanproject.jwt.MyUserDetailsService;
-import com.example.callcenterforloanproject.model.User;
+import com.example.callcenterforloanproject.model.entity.User;
 import com.example.callcenterforloanproject.service.ConverterService;
 import com.example.callcenterforloanproject.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -53,7 +51,7 @@ public class UserController {
             final String token = jwtManager.generateJwt(user.getUsername());
             return new ResponseEntity<>(new UserLoginResponseDto(user.getUsername(), token), HttpStatus.OK);
         }catch (Exception e){
-            throw e;
+            throw new UsernameOrPasswordIncorrectException();
         }
     }
     @GetMapping("/welcome")

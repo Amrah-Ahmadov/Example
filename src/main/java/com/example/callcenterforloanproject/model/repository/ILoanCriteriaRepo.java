@@ -1,6 +1,6 @@
-package com.example.callcenterforloanproject.repository;
+package com.example.callcenterforloanproject.model.repository;
 
-import com.example.callcenterforloanproject.model.Loan;
+import com.example.callcenterforloanproject.model.entity.Loan;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;

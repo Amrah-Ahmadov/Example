@@ -46,7 +46,13 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ExceptionClass> handleRepeatPasswordIncorrectException(RepeatPasswordIncorrectException repeatPasswordIncorrectException){
         ExceptionClass ex = new ExceptionClass(repeatPasswordIncorrectException.getMessage(), "400");
-        return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(UsernameOrPasswordIncorrectException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ExceptionClass> handleUsernameOrPasswordIncorrectException(UsernameOrPasswordIncorrectException usernameOrPasswordIncorrectException){
+        ExceptionClass ex = new ExceptionClass(usernameOrPasswordIncorrectException.getMessage(), "400");
+        return new ResponseEntity<>(ex, HttpStatus.OK);
     }
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

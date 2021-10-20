@@ -1,4 +1,4 @@
-package com.example.callcenterforloanproject.model;
+package com.example.callcenterforloanproject.model.entity;
 
 import lombok.*;
 

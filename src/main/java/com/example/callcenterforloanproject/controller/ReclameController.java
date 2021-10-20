@@ -1,9 +1,7 @@
 package com.example.callcenterforloanproject.controller;
 
-import com.example.callcenterforloanproject.dto.CreditDto;
 import com.example.callcenterforloanproject.dto.ReclameDto;
-import com.example.callcenterforloanproject.model.Credit;
-import com.example.callcenterforloanproject.model.Reclame;
+import com.example.callcenterforloanproject.model.entity.Reclame;
 import com.example.callcenterforloanproject.service.ConverterService;
 import com.example.callcenterforloanproject.service.ReclamService;
 import org.springframework.http.HttpStatus;

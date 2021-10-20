@@ -1,16 +1,13 @@
 package com.example.callcenterforloanproject.controller;
 
 import com.example.callcenterforloanproject.dto.CreditDto;
-import com.example.callcenterforloanproject.dto.LoanDto;
-import com.example.callcenterforloanproject.model.Credit;
-import com.example.callcenterforloanproject.model.Loan;
+import com.example.callcenterforloanproject.model.entity.Credit;
 import com.example.callcenterforloanproject.service.ConverterService;
 import com.example.callcenterforloanproject.service.CreditService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,8 +23,7 @@ public class CreditController {
     }
     @PostMapping
     public ResponseEntity<CreditDto> addNewCredit(@RequestBody Credit credit){
-        Credit credit1 = creditService.addNewCredit(credit);
-        CreditDto creditDto = converterService.convertCreditToCreditDto(credit1);
+        CreditDto creditDto = converterService.convertCreditToCreditDto(creditService.addNewCredit(credit));
         return new ResponseEntity<>(creditDto, HttpStatus.OK);
     }
     @DeleteMapping("{id}")
@@ -43,6 +39,8 @@ public class CreditController {
     @GetMapping
     public ResponseEntity<List<CreditDto>> getAllCredits(){
         List<Credit> allCredits = creditService.getAllCredits();
-        return new ResponseEntity<>(allCredits.stream().map(l -> converterService.convertCreditToCreditDto(l)).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(allCredits.stream()
+                .map(converterService::convertCreditToCreditDto).collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 }

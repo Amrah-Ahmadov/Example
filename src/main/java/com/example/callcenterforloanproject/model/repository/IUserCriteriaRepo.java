@@ -1,6 +1,6 @@
-package com.example.callcenterforloanproject.repository;
+package com.example.callcenterforloanproject.model.repository;
 
-import com.example.callcenterforloanproject.model.User;
+import com.example.callcenterforloanproject.model.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
